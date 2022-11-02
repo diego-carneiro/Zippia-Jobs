@@ -84,13 +84,18 @@ const CompanyLogoBox = styled.div`
   justify-content: center;
 
   @media (max-width: 900px) {
-    width: 80px;
+    width: 60px;
   }
 `;
 const CompanyLogo = styled.img`
   width: 60px;
   height: 60px;
   margin-top: 30px;
+
+  @media (max-width: 900px) {
+    width: 40px;
+    height: 40px;
+  }
 `;
 const InfoContainer = styled.div`
   display: flex;
@@ -102,7 +107,7 @@ const InfoContainer = styled.div`
   }
 
   @media (max-width: 900px) {
-    width: 250px;
+    width: 240px;
   }
 `;
 const InfoBox = styled.div`
@@ -115,6 +120,10 @@ const InfoBox = styled.div`
   h2 {
     color: #333333;
     font-size: 12px;
+  }
+
+  @media (max-width: 900px) {
+    width: 220px;
   }
 `;
 const DescriptionBox = styled.div`
@@ -133,5 +142,9 @@ const DescriptionBox = styled.div`
     background-color: #dbdbdb;
     border-radius: 9px;
     height: "2px";
+  }
+
+  @media (max-width: 900px) {
+    width: 220px;
   }
 `;

@@ -6,10 +6,10 @@ import { Job } from "../../Interfaces";
 import JobsList from "../../Components/JobsList";
 
 export default function MainScreen({}) {
-  const [data, setData] = useState<Job[]>([]);
-  const [filtered, setFiltered] = useState<Job[]>([]);
+  const [data, setData] = useState<Job[]>([]); //Receive request data
+  const [filtered, setFiltered] = useState<Job[]>([]); //Receive filtered information
 
-  const body = {
+  const body = { //Request Payload
     companySkills: true,
     dismissedListingHashes: [],
     fetchJobDesc: true,
@@ -19,7 +19,7 @@ export default function MainScreen({}) {
     previousListingHashes: [],
   };
 
-  useEffect(() => {
+  useEffect(() => {  //React hook that handles the request
     const promise = axios.post("https://www.zippia.com/api/jobs/", body);
     promise.then((response) => {
       setFiltered(response.data.jobs);
@@ -27,18 +27,14 @@ export default function MainScreen({}) {
     });
   }, []);
 
-  // function clearDescription () {
-  //   const cleared = data.jobDescription("\n", "");
-  // }
-
-  function alphabeticalOrder() {
+  function alphabeticalOrder() { //Filters the array of jobs in an alphabetical order of company names
     let shallowCopy = [ ...data ];
     setFiltered(
       shallowCopy.sort((a, b) => a.companyName.localeCompare(b.companyName))
     );
   }
 
-  function atLast7Days() {
+  function atLast7Days() { //Filters the array of jobs removing the jobs with more than 7d
     const filter = [
       "1d ago",
       "2d ago",
@@ -51,7 +47,7 @@ export default function MainScreen({}) {
 
     setFiltered(data.filter((val) => filter.includes(val.postedDate)));
   }
-  console.log(filtered);
+
   return (
     <Container>
       <ButtonBar>
@@ -78,7 +74,6 @@ const Container = styled.div`
 `;
 const ButtonBar = styled.div`
   width: 100vw;
-  height: calc(100vh - 80%);
   border: 1px solid #d8dee2;
   box-shadow: 0 2px 4px rgb(0 0 0 / 4%);
 
